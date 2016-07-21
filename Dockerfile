@@ -20,7 +20,7 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update \
 	   											  graphicsmagick \
 	   											  mysql-client \
 	   											  php5-cli \
-	   											  php5-mysql
+	   											  php5-mysql \
 	&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \
 	&& apt-get -y --no-install-recommends install nodejs 
 
