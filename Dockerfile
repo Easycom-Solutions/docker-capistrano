@@ -47,9 +47,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y --no-install-recommends install \
 # =========================================
 # Configure SSHD
 # =========================================
-RUN sed -ri 's/^PermitRootLogin\s+.*/PermitRootLogin no/' /etc/ssh/sshd_config \
-	&& sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config \
-	&& sed -ri 's/#PasswordAuthentication yes/PasswordAuthentication no/g' /etc/ssh/sshd_config \
+RUN sed -ri 's,^PermitRootLogin\s+.*,PermitRootLogin no,' /etc/ssh/sshd_config \
+	&& sed -ri 's,UsePAM yes,#UsePAM yes,g' /etc/ssh/sshd_config \
+	&& sed -ri 's,#PasswordAuthentication yes,PasswordAuthentication no,g' /etc/ssh/sshd_config \
+	&& sed -ri 's,^X11Forwarding\s+.*,X11Forwarding no,' /etc/ssh/sshd_config \
+	&& sed -ri 's,^HostKey /etc/ssh/ssh_host_,HostKey /etc/ssh/keys/ssh_host_,' /etc/ssh/sshd_config \
+	&& mkdir /etc/ssh/keys \
+	&& chmod go-rwx /etc/ssh/keys \
+	&& mv /etc/ssh/ssh_host_* /etc/ssh/keys/ \
 	&& mkdir /var/run/sshd \
 	&& service ssh stop
 
