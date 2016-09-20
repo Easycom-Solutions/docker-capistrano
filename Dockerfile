@@ -78,7 +78,11 @@ RUN git config --global user.email "easycom-$(cat /etc/hostname)@easycom.digital
 	&& git config --global user.name "User Easycom - Docker Capistrano $(cat /etc/hostname)"
 USER root
 
-Expose 22
+ADD docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+EXPOSE 22
 
 # Launch run script
-CMD /usr/sbin/sshd -D
+CMD ["-D"]
