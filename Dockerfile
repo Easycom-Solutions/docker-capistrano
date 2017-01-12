@@ -4,25 +4,49 @@ MAINTAINER Frédéric T <xmedias@easycom.digital>
 # =========================================
 # Update apt-cache and install requirements for common projetcs using sass and gulp throw nodejs
 # =========================================
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-	&& apt-get -y --no-install-recommends install unzip \
-	   											  zip \
-	   											  wget \
-	   											  git \
-	   											  lsb-release \
-	   											  gzip \
-	   											  bzip2 \
-	   											  openssh-server \
-	   											  rsync \
-	   											  ca-certificates \
-	   											  curl \ 
-	   											  imagemagick \
-	   											  graphicsmagick \
-	   											  mysql-client \
-	   											  php5-cli \
-	   											  php5-mysql \
-	&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \
-	&& apt-get -y --no-install-recommends install nodejs 
+RUN DEBIAN_FRONTEND=noninteractive \
+apt-get update && apt-get install -y wget \
+&& wget https://www.dotdeb.org/dotdeb.gpg \
+&& apt-key add dotdeb.gpg \
+&& rm dotdeb.gpg \
+&& echo "deb http://packages.dotdeb.org jessie all" > /etc/apt/sources.list.d/dotdeb.list \
+&& echo "deb-src http://packages.dotdeb.org jessie all" >> /etc/apt/sources.list.d/dotdeb.list \
+&& apt-get update \
+&& apt-get -y --no-install-recommends install unzip \
+	zip \
+	wget \
+	git \
+	lsb-release \
+	gzip \
+	bzip2 \
+	openssh-server \
+	rsync \
+	ca-certificates \
+	curl \ 
+	imagemagick \
+	graphicsmagick \
+	mysql-client \
+	php7.0-bz2 \
+	php7.0-cli \
+	php7.0-common \
+	php7.0-curl \
+	php7.0-gd \
+	php7.0-imagick \
+	php7.0-intl \
+	php7.0-json \
+	php7.0-mbstring \
+	php7.0-mcrypt \
+	php7.0-mysql \
+	php7.0-opcache \
+	php7.0-redis \
+	php7.0-snmp \
+	php7.0-soap \
+	php7.0-xml \
+	php7.0-xmlrpc \
+	php7.0-xsl \
+	php7.0-zip \
+&& curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+&& apt-get -y --no-install-recommends install nodejs 
 
 # =========================================
 # Install custom motd
