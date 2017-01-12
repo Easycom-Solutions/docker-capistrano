@@ -39,7 +39,6 @@ apt-get update && apt-get install -y wget \
 	php7.0-mysql \
 	php7.0-opcache \
 	php7.0-redis \
-	php7.0-snmp \
 	php7.0-soap \
 	php7.0-xml \
 	php7.0-xmlrpc \
