@@ -1,4 +1,4 @@
-FROM easycom/base
+FROM easycom/base:jessie
 MAINTAINER Frédéric T <xmedias@easycom.digital>
 
 # =========================================
