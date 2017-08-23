@@ -15,6 +15,7 @@ apt-get update && apt-get install -y wget \
 && apt-get -y --no-install-recommends install unzip \
 	zip \
 	wget \
+	less \
 	git \
 	lsb-release \
 	gzip \
